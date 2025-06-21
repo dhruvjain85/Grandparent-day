@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Grandparents' Day Dadi Amma</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #fff8f0;
+      text-align: center;
+      padding: 40px;
+      color: #5c3d2e;
+      overflow-x: hidden;
+    }
+    .card {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 2s ease-in-out;
+    }
+    h1 {
+      color: #c94f7c;
+      font-size: 2.5em;
+    }
+    .section {
+      margin-top: 30px;
+    }
+    input {
+      padding: 10px;
+      border: 2px solid #c94f7c;
+      border-radius: 8px;
+      width: 80%;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+    .button {
+      padding: 12px 25px;
+      font-size: 1em;
+      background-color: #c94f7c;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+    .hidden {
+      display: none;
+    }
+    .greeting {
+      font-size: 1.2em;
+      background: #ffe9f3;
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 15px;
+      color: #6b2b3b;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 Background Music -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 🎉 Confetti Canvas -->
+  <canvas id="confettiCanvas" class="hidden"></canvas>
+
+  <div class="card" id="formCard">
+    <h1>From Dhruv and Noon to our dearest Dadi Amma 💐</h1>
+
+    <div class="section">
+      <p>Please confirm these birthday dates, Dadi Amma:</p>
+
+      <input type="text" value="Dhruv's Birthday: 10 November 2011" readonly><br>
+      <input type="text" value="Suhana's Birthday: 2 November 2008" readonly><br>
+      <input type="text" value="Your Birthday: 23 February 1962" readonly><br>
+
+      <button class="button" onclick="showGreeting()">Open Blessing Page 💖</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="greetingCard">
+    <h1>🌸 Happy Grandparents' Day 🌸</h1>
+    <div class="greeting">
+      <p>Dearest Dadi Amma,</p>
+      <p>On this Grandparents’ Day, we want you to know how much we love and admire you. Your love, strength, and endless blessings make our world beautiful.</p>
+      <p>Thank you for your warm hugs, sweet stories, and always believing in us.</p>
+      <p><strong>We love you forever,</strong><br>Dhruv and Noon 💕</p>
+    </div>
+  </div>
+
+  <!-- 🎉 Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function showGreeting() {
+      document.getElementById('formCard').classList.add('hidden');
+      document.getElementById('greetingCard').classList.remove('hidden');
+
+      // Trigger confetti
+      const duration = 5 * 1000;
+      const animationEnd = Date.now() + duration;
+      const confettiCanvas = document.getElementById('confettiCanvas');
+      confettiCanvas.classList.remove('hidden');
+
+      const myConfetti = confetti.create(confettiCanvas, { resize: true });
+      (function frame() {
+        myConfetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        myConfetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < animationEnd) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    }
+  </script>
+
+</body>
+</html>
